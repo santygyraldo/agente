@@ -149,3 +149,111 @@ La optimización debe incluir:
 - Validación final de funcionamiento del sistema completo.
 
 ---
+
+# 9. Conversión de Skills Python (.py) a Skills Markdown (.md)
+
+## Prompt Utilizado
+
+Transforme los skills analíticos implementados originalmente en archivos Python (`.py`) hacia una arquitectura basada en documentación modular (`.md`) compatible con Jupyter Notebook y sistemas analíticos orientados por instrucciones.
+
+La conversión debe cumplir obligatoriamente con los siguientes requerimientos:
+
+- Eliminar lógica procedural basada en clases y métodos Python.
+- Convertir cada skill en un documento analítico interpretativo.
+- Mantener separación clara entre:
+  - EDA
+  - análisis de correlaciones
+  - generación de insights
+- Adaptar toda la arquitectura para ejecución directa desde `social_impact_analysis.ipynb`.
+- Evitar dependencias de scripts `.py` externos.
+- Sustituir lógica hardcodeada por instrucciones analíticas interpretables.
+- Mantener compatibilidad conceptual con el agente orquestador documentado en `agent.md`.
+- Permitir que el notebook utilice los skills como referencia operativa para ejecutar análisis dinámicos.
+
+La nueva estructura de skills debía incluir:
+
+- Objetivo del análisis
+- Variables involucradas
+- Pasos analíticos
+- Visualizaciones esperadas
+- Reglas de interpretación
+- Umbrales de decisión
+- Insights esperados
+- Recomendaciones automáticas
+
+La transformación debía además:
+
+- Optimizar claridad documental.
+- Mejorar mantenibilidad del sistema.
+- Facilitar reutilización de skills.
+- Adaptarse a arquitecturas orientadas a notebooks.
+- Mantener un enfoque profesional de Data Science y Analítica.
+
+Los nuevos skills `.md` debían funcionar como:
+
+- especificaciones analíticas
+- contexto operativo del notebook
+- instrucciones interpretativas
+- guía estructurada para ejecución del análisis
+
+sin incluir código ejecutable Python.
+
+---
+
+# 10. Generación del Notebook de Ejecución Analítica
+
+## Prompt Utilizado
+
+Construya un notebook Jupyter profesional (`social_impact_analysis.ipynb`) tomando como referencia el archivo `agent.md` y todos los skills analíticos definidos en la carpeta `skills/`.
+
+El notebook debe funcionar como el agente orquestador principal del sistema analítico y ejecutar todo el flujo de análisis directamente desde Jupyter Notebook, sin depender de scripts `.py` externos.
+
+La implementación debe cumplir obligatoriamente con los siguientes requerimientos:
+
+- Ejecutar todo el análisis directamente dentro del notebook.
+- Interpretar conceptualmente las instrucciones contenidas en:
+  - `agent.md`
+  - `eda_skill.md`
+  - `correlation_analysis.md`
+  - `insight_generation.md`
+- Mantener una estructura modular y profesional orientada a Data Science.
+- Organizar el notebook por secciones claramente diferenciadas.
+- Mostrar todas las visualizaciones inline dentro de Jupyter Notebook.
+- Incluir explicaciones e interpretaciones analíticas en celdas Markdown.
+
+El notebook debía incluir como mínimo las siguientes etapas:
+
+1. Introducción del proyecto
+2. Importación de librerías
+3. Carga del dataset CSV
+4. Vista general del dataset
+5. Análisis Exploratorio de Datos (EDA)
+6. Análisis de correlaciones
+7. Análisis por subgrupos
+8. Generación automática de insights
+9. Identificación de riesgos
+10. Conclusiones finales
+
+Las visualizaciones debían incluir:
+
+- Histogramas
+- Heatmaps correlacionales
+- Scatter plots
+- Boxplots
+- Dashboards analíticos
+- Comparaciones por categorías
+
+El sistema debía además:
+
+- Detectar patrones relevantes automáticamente.
+- Generar conclusiones interpretativas.
+- Identificar relaciones entre:
+  - uso de redes sociales
+  - salud mental
+  - horas de sueño
+  - impacto académico
+- Generar recomendaciones basadas en métricas cuantitativas.
+
+La arquitectura final debía estar completamente orientada a notebooks y basada en skills documentados en archivos `.md`, eliminando dependencias de agentes implementados mediante scripts Python externos.
+
+---
