@@ -1,4 +1,4 @@
-# 🤖 Agente Orquestador: SocialImpact Orchestrator
+# Agente Orquestador: SocialImpact Orchestrator
 
 Este documento describe la arquitectura del agente orquestador diseñado para analizar el impacto de las redes sociales en estudiantes.
 
