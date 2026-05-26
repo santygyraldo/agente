@@ -257,3 +257,173 @@ El sistema debía además:
 La arquitectura final debía estar completamente orientada a notebooks y basada en skills documentados en archivos `.md`, eliminando dependencias de agentes implementados mediante scripts Python externos.
 
 ---
+11. Generar notebook completo final
+
+Quiero generar un notebook completo llamado social_impact_analysis.ipynb utilizando Python, pandas, matplotlib y seaborn.
+
+El notebook debe implementar un sistema analítico orientado a agentes basado en un agente orquestador y skills modulares definidos mediante instrucciones .md.
+
+La estructura del notebook debe ser limpia, profesional y organizada mediante secciones markdown y celdas de código claramente separadas.
+
+# Objetivo del Proyecto
+
+Analizar el impacto del uso de redes sociales sobre el bienestar estudiantil utilizando:
+
+* análisis exploratorio de datos (EDA)
+* análisis de correlaciones
+* generación automática de insights # hayazgos profundos
+
+El notebook debe producir:
+
+* visualizaciones analíticas
+* correlaciones relevantes
+* alertas automáticas
+* insights interpretativos
+* recomendaciones basadas en evidencia cuantitativa
+
+# Dataset
+
+Utilizar un dataset CSV relacionado con:
+
+* uso de redes sociales
+* salud mental
+* horas de sueño
+* bienestar estudiantil
+
+Variables principales esperadas:
+
+* Age 
+* Avg_Daily_Usage_Hours 
+* Sleep_Hours_Per_Night 
+* Mental_Health_Score 
+* Gender 
+* Most_Used_Platform 
+* Overall_Impact 
+
+# Estructura del Notebook
+
+El notebook debe contener las siguientes secciones:
+
+1. Introducción del proyecto
+2. Importación de librerías
+3. Carga y validación del dataset
+4. EDA Skill Execution
+5. Correlation Analysis Skill Execution
+6. Insight Generation Skill Execution
+7. Dashboard resumen
+8. Conclusiones finales
+
+# Requisitos Técnicos
+
+## Librerías
+
+Usar:
+
+* pandas
+* numpy
+* matplotlib
+* seaborn
+
+## Visualizaciones
+
+Generar:
+
+* histogramas
+* heatmaps correlacionales
+* boxplots comparativos
+* scatter plots con líneas de tendencia
+* dashboard resumen en grid 2x2
+
+Las visualizaciones deben ser claras, profesionales y fáciles de interpretar.
+
+# EDA Skill Execution
+
+El notebook debe:
+
+* analizar distribuciones de variables numéricas
+* detectar posibles valores atípicos
+* identificar patrones iniciales
+* comparar grupos por:
+
+  * Gender 
+  * Most_Used_Platform 
+
+Agregar markdowns explicativos antes de cada análisis.
+
+# Correlation Analysis Skill Execution
+
+El notebook debe:
+
+* calcular matriz de correlación
+* generar heatmap anotado
+* analizar relaciones entre:
+
+  * uso de redes sociales y salud mental
+  * uso de redes sociales y sueño
+  * sueño y salud mental
+
+Agregar scatter plots con líneas de tendencia.
+
+Interpretar correlaciones usando:
+
+* |r| > 0.7 → Muy fuerte
+* |r| > 0.5 → Fuerte
+* |r| > 0.3 → Moderada
+* |r| < 0.3 → Débil
+
+# Alertas Automáticas
+
+El notebook debe generar alertas automáticas si:
+
+* Avg_Daily_Usage_Hours > 6 
+* Sleep_Hours_Per_Night < 6 
+* Mental_Health_Score < 5 
+* correlaciones negativas relevantes < -0.5 
+
+Ejemplo:
+
+``python
+if corr_value < -0.5:
+    print("⚠️ Posible impacto negativo detectado.")
+``
+
+# Insight Generation Skill Execution
+
+El notebook debe:
+
+* generar insights automáticos
+* identificar grupos de riesgo
+* sintetizar patrones relevantes
+* producir recomendaciones interpretativas
+
+Cada insight debe incluir:
+
+* observación
+* evidencia cuantitativa
+* interpretación contextual
+
+Generar entre 5 y 8 insights automáticos.
+
+# Estilo del Notebook
+
+El notebook debe verse como la ejecución de un agente analítico inteligente y no como código aislado.
+
+Agregar celdas markdown explicativas antes de cada sección importante utilizando lenguaje técnico y profesional.
+
+# Requisitos de Código
+
+* Código limpio y bien comentado
+* Uso de funciones cuando sea necesario
+* Variables bien nombradas
+* Visualizaciones organizadas
+* Flujo coherente entre secciones
+
+# Resultado Esperado
+
+Generar un notebook funcional, profesional y listo para sustentación universitaria, mostrando claramente:
+
+* arquitectura orientada a agentes
+* ejecución modular basada en skills
+* análisis exploratorio
+* análisis correlacional
+* generación automática de insights

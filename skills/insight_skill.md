@@ -1,83 +1,107 @@
 # Generación de Insights — Dataset Impacto Redes Sociales
 
 ## Objetivo
-Sintetizar resultados del análisis exploratorio y correlacional para generar conclusiones interpretativas, identificar grupos de riesgo y producir recomendaciones basadas en evidencia cuantitativa. Todo el análisis debe generarse dentro de `social_impact_analysis.ipynb`.
 
-## Generación de Insights
+Sintetizar resultados del análisis exploratorio y correlacional para generar conclusiones interpretativas, identificar grupos de riesgo y producir recomendaciones basadas en evidencia cuantitativa.
 
-### 1. Síntesis de patrones
-- Clasificar niveles de uso de redes sociales:
-  - Alto consumo: `> 6 horas`
-  - Consumo medio: `4–6 horas`
-  - Bajo consumo: `< 4 horas`
+Todo el análisis debe generarse dentro de:
 
-- Clasificar estado de salud mental:
-  - Deterioro: `< 5`
-  - Aceptable: `>= 5`
+`social_impact_analysis.ipynb`
 
-- Clasificar hábitos de sueño:
-  - Privación: `< 6 horas`
-  - Adecuado: `>= 6 horas`
+---
 
-- Identificar patrones predominantes entre uso, sueño y salud mental.
+# Generación de Insights
 
-### 2. Identificación de riesgos
-- Detectar grupos con:
-  - uso superior a `media + 1 desviación estándar`
-  - salud mental inferior a `media - 1 desviación estándar`
-- Calcular porcentaje de estudiantes con afectación académica.
-- Identificar segmentos con mayores indicadores de riesgo.
+## 1. Síntesis de patrones
 
-### 3. Priorización de hallazgos
-- Clasificar hallazgos según nivel de prioridad:
+Analizar niveles de:
 
-  - Prioridad Alta:
-    - correlaciones `> 0.7` o `< -0.7`
+* uso de redes sociales
+* hábitos de sueño
+* salud mental
 
-  - Prioridad Media:
-    - correlaciones entre `0.5 y 0.7`
+El agente debe identificar patrones predominantes y posibles relaciones de riesgo asociadas al bienestar estudiantil.
 
-  - Prioridad Baja:
-    - correlaciones menores a `0.5`
+---
 
-- Destacar automáticamente patrones críticos o preocupantes.
+## 2. Identificación de riesgos
 
-### 4. Generación de recomendaciones
-- Generar recomendaciones basadas en:
-  - correlaciones detectadas
-  - patrones de comportamiento
-  - grupos de riesgo identificados
-  - hábitos de sueño y uso digital
+Detectar segmentos con:
 
-- Relacionar cada recomendación con evidencia cuantitativa encontrada en el análisis.
+* indicadores elevados de uso digital
+* posibles señales de deterioro emocional
+* afectación académica
+* patrones críticos de comportamiento
 
-### 5. Formato de insights
-Cada insight generado debe incluir:
+El análisis debe priorizar grupos con mayores indicadores de riesgo.
 
-1. Observación:
-   - qué patrón fue encontrado
+---
 
-2. Evidencia:
-   - métricas o valores relevantes
+## 3. Priorización de hallazgos
 
-3. Interpretación:
-   - significado del hallazgo
+Clasificar hallazgos según:
 
-4. Recomendación:
-   - posible acción o medida sugerida
+* intensidad de correlaciones
+* impacto potencial
+* consistencia de patrones detectados
 
-### 6. Exploración visual
-- Generar:
-  - dashboard resumen en grid 2x2
-  - mapa de calor de riesgo por subgrupos
-  - visualizaciones interpretativas de hallazgos principales
+El agente debe destacar automáticamente relaciones críticas o preocupantes.
 
-- Mostrar todas las visualizaciones directamente en Jupyter Notebook.
+---
 
-### 7. Insights principales
-- Generar entre 5 y 8 conclusiones automáticas.
-- Cada conclusión debe:
-  - incluir métricas concretas
-  - explicar implicaciones relevantes
-  - priorizar claridad interpretativa
-  - enfocarse en bienestar estudiantil y comportamiento digital
+## 4. Generación de recomendaciones
+
+Generar recomendaciones basadas en:
+
+* correlaciones detectadas
+* patrones de comportamiento
+* grupos de riesgo identificados
+* hábitos de sueño y uso digital
+
+Cada recomendación debe relacionarse con evidencia cuantitativa encontrada en el análisis.
+
+---
+
+## 5. Formato de insights
+
+Cada insight debe incluir:
+
+* observación
+* evidencia cuantitativa
+* interpretación contextual
+* recomendación sugerida
+
+---
+
+## 6. Exploración visual
+
+Utilizar visualizaciones interpretativas como:
+
+* dashboard resumen
+* mapas de riesgo
+* visualizaciones comparativas
+
+Las visualizaciones deben facilitar la interpretación de hallazgos relevantes.
+
+---
+
+## 7. Insights principales
+
+Generar entre 5 y 8 conclusiones automáticas enfocadas en:
+
+* bienestar estudiantil
+* comportamiento digital
+* riesgos identificados
+* implicaciones relevantes del análisis
+
+---
+
+# Resultado Esperado
+
+El análisis debe generar:
+
+* insights interpretativos
+* clasificación de riesgos
+* recomendaciones accionables
+* visualizaciones interpretativas
+* conclusiones contextualizadas

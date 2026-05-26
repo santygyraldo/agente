@@ -1,79 +1,181 @@
-# Agente Orquestador: SocialImpact Orchestrator
+# Agente Orquestador — SocialImpact Orchestrator
 
-Este documento describe la arquitectura del agente orquestador diseñado para analizar el impacto de las redes sociales en estudiantes.
+## Objetivo
 
----
+Coordinar la ejecución de skills analíticos especializados para analizar el impacto del uso de redes sociales en estudiantes, identificando patrones de comportamiento, riesgos potenciales y relaciones entre bienestar digital, sueño y salud mental.
 
-## 1. Arquitectura del Sistema
+Todo el flujo analítico debe ejecutarse dentro de:
 
-El sistema sigue un patrón de **Agente Orquestador con Skills**, donde las responsabilidades están claramente separadas:
-
-### 1.1 Agente Orquestador (`analyzer.py`)
-Es el componente principal que coordina el flujo de trabajo. No contiene lógica analítica, sino que invoca a las habilidades (skills) en un orden lógico:
-1.  **Preparación**: Invoca a `DataPreparationSkill`.
-2.  **Exploración**: Invoca a `EDASkill`.
-3.  **Modelado**: Invoca a `PredictiveModelingSkill`.
-
-### 1.2 Skills (`skills.py`)
-Son módulos independientes que contienen la lógica específica:
-
--   **DataPreparationSkill**: Encargada de la carga de archivos, limpieza de nulos, eliminación de duplicados y transformaciones (codificación de variables).
--   **EDASkill**: Encargada de generar visualizaciones estadísticas y análisis de correlación.
--   **PredictiveModelingSkill**: Encargada de entrenar un modelo de Machine Learning (Random Forest) para clasificar el impacto general.
+`social_impact_analysis.ipynb`
 
 ---
 
-## 2. Pipeline de Ejecución
+# Arquitectura del Sistema
 
-El flujo de datos es explícito y secuencial:
+El sistema sigue una arquitectura basada en:
 
-`Data set.csv` ➔ **DataPreparation** ➔ `DataFrame Limpio` ➔ **EDA** ➔ `Insights Visuales` ➔ **PredictiveModeling** ➔ `Modelo & Métricas`
+* Agente Orquestador
+* Skills modulares
+* Análisis dinámico orientado a Jupyter Notebook
+* Generación automática de insights
 
----
+El agente no contiene lógica analítica hardcodeada.
+Su responsabilidad es:
 
-## 3. Resultados Analíticos (Entregables)
-
-El sistema genera los siguientes resultados mínimos requeridos:
-
-### 3.1 Dataset Preparado (Data Wrangling)
-- **Limpieza automática**: Eliminación de nulos y duplicados.
-- **Análisis de NaN**: Reporte detallado de valores faltantes por columna con porcentajes.
-- **Validación Rigurosa**:
-  - Verificación de rangos de valores (ej: Edad 10-60, Uso 0-24h, Sueño 0-12h, Salud 0-10).
-  - Validación de tipos de datos para columnas numéricas.
-- **Detección de Outliers**: Identificación de valores atípicos usando método IQR (Interquartile Range) con límites superior e inferior.
-- **Transformaciones**: Codificación de variables categóricas (`LabelEncoder`) y creación de variables sintéticas (`Usage_Category`, `Affects_Academic_Binary`).
-
-### 3.2 Evidencia de Análisis Exploratorio (EDA)
-Las visualizaciones se exportan automáticamente a la carpeta `analysis_results/`:
-- `agente_correlation.png`: Matriz de correlación para identificar relaciones clave.
-- `agente_mental_health.png`: Boxplot que muestra el impacto de las plataformas en la salud mental.
-- `agente_scatter_plots.png`: 4 scatter plots bivariados (Uso vs Salud Mental, Uso vs Sueño, Sueño vs Salud Mental, Edad vs Uso).
-- `agente_pairplot.png`: Pairplot completo con KDE para análisis multivariado de todas las variables numéricas.
-- `agente_multivariate.png`: Análisis multivariado por categorías (Uso vs Sueño coloreado por Impacto General, Uso vs Salud Mental coloreado por Género).
-
-### 3.3 Modelado Predictivo
-- **Entrenamiento y Prueba**: El sistema divide los datos (75% entrenamiento, 25% prueba) y evalúa múltiples algoritmos.
-- **Modelos Comparados**: Random Forest vs. Regresión Logística.
-- **Selección de Modelo Final**: Se selecciona el modelo con mejor `accuracy` en el conjunto de prueba.
-- **Justificación Técnica**: Random Forest es seleccionado usualmente por su capacidad para capturar interacciones complejas y no lineales entre el tiempo de uso, las horas de sueño y la salud mental, superando a modelos lineales en precisión predictiva.
+* cargar skills analíticos
+* interpretar instrucciones
+* coordinar análisis
+* detectar patrones relevantes
+* consolidar resultados
+* generar insights interpretativos y recomendaciones
 
 ---
 
-## 4. Requisitos de Instalación
+# Skills Integradas
 
-```bash
-pip install -r requirements.txt
+## 1. Exploratory Data Analysis (EDA)
+
+### Objetivo
+
+Explorar distribuciones, patrones y relaciones iniciales dentro del dataset.
+
+### Responsabilidades
+
+* Análisis de variables numéricas y categóricas
+* Histogramas y distribuciones
+* Detección de asimetrías y valores atípicos
+* Boxplots comparativos
+* Relaciones bivariadas
+* Heatmap correlacional inicial
+* Identificación de alertas tempranas
+
+### Variables principales
+
+* Age
+* Avg_Daily_Usage_Hours
+* Sleep_Hours_Per_Night
+* Mental_Health_Score
+* Gender
+* Most_Used_Platform
+* Overall_Impact
+
+---
+
+## 2. Correlation Analysis
+
+### Objetivo
+
+Identificar relaciones estadísticas significativas entre variables y detectar posibles indicadores de riesgo.
+
+### Responsabilidades
+
+* Matriz completa de correlación
+* Relaciones:
+
+  * Uso vs Salud Mental
+  * Uso vs Sueño
+  * Sueño vs Salud Mental
+* Scatter plots con tendencia
+* Análisis por subgrupos
+* Interpretación automática de correlaciones
+* Detección de patrones críticos
+
+### Reglas de interpretación
+
+* `|r| > 0.7` → Muy fuerte
+* `|r| > 0.5` → Fuerte
+* `|r| > 0.3` → Moderada
+* `|r| < 0.3` → Débil
+
+---
+
+## 3. Insight Generation
+
+### Objetivo
+
+Transformar resultados estadísticos en conclusiones interpretativas y recomendaciones accionables.
+
+### Responsabilidades
+
+* Clasificación de niveles de riesgo
+* Identificación de patrones críticos
+* Priorización de hallazgos
+* Generación automática de conclusiones
+* Recomendaciones basadas en evidencia cuantitativa
+* Síntesis interpretativa de resultados
+
+### Criterios principales
+
+* Uso elevado de redes sociales
+* Privación de sueño
+* Deterioro de salud mental
+* Impacto académico
+* Segmentos de mayor riesgo
+
+---
+
+# Flujo de Ejecución
+
+El agente debe adaptar el flujo analítico según:
+
+* calidad de los datos
+* correlaciones detectadas
+* patrones encontrados
+* riesgos identificados
+
+## Flujo principal
+
+```text
+Dataset CSV
+   ↓
+Carga y validación de datos
+   ↓
+EDA Skill
+   ↓
+Correlation Analysis Skill
+   ↓
+Insight Generation Skill
+   ↓
+Conclusiones automáticas
 ```
 
+## Comportamiento del Agente
+
+Si se detectan:
+
+* correlaciones críticas
+* indicadores de deterioro mental
+* privación de sueño
+* patrones de riesgo elevados
+
+El agente debe:
+
+* priorizar hallazgos relevantes
+* generar alertas interpretativas
+* destacar posibles implicaciones sobre bienestar estudiantil
+* producir recomendaciones basadas en evidencia
+
 ---
 
-## 4. Ejecución
+# Reglas Generales
 
-Para iniciar el agente, ejecute:
+El agente debe:
 
-```bash
-python analyzer.py
-```
+* priorizar evidencia cuantitativa
+* evitar conclusiones sin soporte estadístico
+* diferenciar correlación de causalidad
+* generar interpretaciones claras y contextualizadas
+* mantener coherencia entre hallazgos y recomendaciones
 
-Las visualizaciones resultantes se guardarán automáticamente en la carpeta `analysis_results/`.
+---
+
+# Resultado Esperado
+
+El sistema debe generar:
+
+* visualizaciones analíticas
+* correlaciones relevantes
+* alertas automáticas
+* insights interpretativos
+* clasificación de riesgos
+* recomendaciones accionables

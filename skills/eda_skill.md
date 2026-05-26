@@ -1,65 +1,109 @@
 # Análisis Exploratorio de Datos (EDA) — Dataset Impacto Redes Sociales
 
 ## Objetivo
-Explorar distribuciones, patrones y relaciones iniciales dentro del dataset para comprender el comportamiento del uso de redes sociales y su posible impacto sobre el bienestar estudiantil. Todo el análisis debe generarse dentro de `social_impact_analysis.ipynb`.
 
-## Exploración de Datos
+Explorar distribuciones, patrones y relaciones iniciales dentro del dataset para comprender el comportamiento del uso de redes sociales y su posible impacto sobre el bienestar estudiantil.
 
-### 1. Distribución de variables
-- Generar histogramas para:
-  - `Age`
-  - `Avg_Daily_Usage_Hours`
-  - `Sleep_Hours_Per_Night`
-  - `Mental_Health_Score`
-- Mostrar media y mediana en cada distribución.
-- Identificar:
-  - asimetrías
-  - concentraciones
-  - posibles valores atípicos
+Todo el análisis debe generarse dentro de:
 
-### 2. Análisis de correlaciones
-- Calcular matriz de correlación entre variables numéricas.
-- Mostrar heatmap anotado directamente en el notebook.
-- Detectar relaciones positivas y negativas relevantes.
+`social_impact_analysis.ipynb`
 
-### 3. Comparaciones por categoría
-- Generar boxplots de:
-  - `Mental_Health_Score` por `Most_Used_Platform`
-  - `Mental_Health_Score` por `Gender`
-- Comparar dispersión, medianas y posibles diferencias entre grupos.
+---
 
-### 4. Relaciones bivariadas
-- Scatter plot:
-  - `Avg_Daily_Usage_Hours` vs `Mental_Health_Score`
-  - `Avg_Daily_Usage_Hours` vs `Sleep_Hours_Per_Night`
-  - `Sleep_Hours_Per_Night` vs `Mental_Health_Score`
-- Agregar líneas de tendencia o regresión.
-- Identificar patrones de comportamiento.
+# Exploración de Datos
 
-### 5. Interpretación de alertas
-- Si `Avg_Daily_Usage_Hours > 6`:
-  - Destacar posible consumo elevado.
+## 1. Distribución de variables
 
-- Si `Mental_Health_Score < 5`:
-  - Destacar posible deterioro emocional.
+Analizar las principales variables numéricas para identificar:
 
-- Si `Sleep_Hours_Per_Night < 6`:
-  - Destacar posible privación de sueño.
+* distribuciones relevantes
+* asimetrías
+* posibles valores atípicos
+* patrones de comportamiento
 
-- Si correlación uso-salud mental `< -0.5`:
-  - Generar alerta de relación preocupante.
+Variables principales:
 
-### 6. Exploración visual
-- Generar:
-  - Histogramas en grid 2x2
-  - Heatmap correlacional
-  - Boxplots comparativos
-  - Scatter plots en grid 2x2
-- Mostrar todas las visualizaciones directamente en Jupyter Notebook.
+* `Age`
+* `Avg_Daily_Usage_Hours`
+* `Sleep_Hours_Per_Night`
+* `Mental_Health_Score`
 
-### 7. Insights principales
-- Generar entre 4 y 6 conclusiones automáticas.
-- Cada insight debe:
-  - incluir métricas concretas
-  - describir patrones encontrados
-  - explicar posibles implicaciones sobre bienestar estudiantil
+---
+
+## 2. Relaciones entre variables
+
+Explorar relaciones entre:
+
+* uso de redes sociales
+* hábitos de sueño
+* salud mental
+
+El agente debe:
+
+* identificar correlaciones relevantes
+* detectar posibles patrones de riesgo
+* priorizar relaciones asociadas al bienestar estudiantil
+
+---
+
+## 3. Comparación entre grupos
+
+Analizar diferencias entre grupos utilizando:
+
+* `Gender`
+* `Most_Used_Platform`
+
+El análisis debe identificar:
+
+* variaciones en salud mental
+* diferencias de comportamiento
+* posibles segmentos vulnerables
+
+---
+
+## 4. Exploración visual
+
+Utilizar visualizaciones analíticas como:
+
+* histogramas
+* heatmaps correlacionales
+* boxplots comparativos
+* scatter plots con tendencia
+
+Las visualizaciones deben facilitar la interpretación de patrones y relaciones relevantes.
+
+---
+
+## 5. Interpretación de alertas
+
+Si se detectan:
+
+* uso elevado de redes sociales
+* privación de sueño
+* deterioro de salud mental
+* correlaciones negativas relevantes
+
+El agente debe generar alertas interpretativas y destacar posibles riesgos asociados al bienestar estudiantil.
+
+---
+
+## 6. Insights principales
+
+Generar entre 4 y 6 insights automáticos basados en los patrones encontrados.
+
+Cada insight debe incluir:
+
+* observación
+* evidencia cuantitativa
+* interpretación contextual
+
+---
+
+# Resultado Esperado
+
+El análisis debe generar:
+
+* visualizaciones exploratorias
+* relaciones relevantes
+* alertas interpretativas
+* insights contextualizados
