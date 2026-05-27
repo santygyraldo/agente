@@ -257,7 +257,7 @@ El sistema debía además:
 La arquitectura final debía estar completamente orientada a notebooks y basada en skills documentados en archivos `.md`, eliminando dependencias de agentes implementados mediante scripts Python externos.
 
 ---
-11. Generar notebook completo final
+# 11. Generar notebook completo final
 
 Quiero generar un notebook completo llamado social_impact_analysis.ipynb utilizando Python, pandas, matplotlib y seaborn.
 

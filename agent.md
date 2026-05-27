@@ -18,22 +18,92 @@ El sistema sigue una arquitectura basada en:
 * Skills modulares
 * Análisis dinámico orientado a Jupyter Notebook
 * Generación automática de insights
+* Evaluación comparativa de modelos
 
 El agente no contiene lógica analítica hardcodeada.
+
 Su responsabilidad es:
 
-* cargar skills analíticos
+* cargar y coordinar skills analíticos
 * interpretar instrucciones
-* coordinar análisis
-* detectar patrones relevantes
+* validar flujo de ejecución
 * consolidar resultados
+* detectar patrones relevantes
+* seleccionar el modelo más adecuado
 * generar insights interpretativos y recomendaciones
 
 ---
 
 # Skills Integradas
 
-## 1. Exploratory Data Analysis (EDA)
+## 1. Data Wrangling
+
+### Objetivo
+
+Limpiar, validar y preparar el dataset antes de ejecutar análisis estadísticos o generación de insights.
+
+### Responsabilidades
+
+* Detección de valores nulos
+* Tratamiento de datos faltantes
+* Eliminación de duplicados
+* Detección de outliers mediante IQR
+* Validación de tipos de datos
+* Transformación de variables categóricas
+* Preparación del dataset para análisis
+
+### Reglas de tratamiento
+
+#### Valores nulos
+
+* < 5%
+  - eliminar registros faltantes
+
+* 5% – 20%
+  - imputar mediana (numéricos)
+  - imputar moda (categóricos)
+
+* > 20%
+  - evaluar exclusión de variable
+
+---
+
+#### Outliers
+
+* Detectar usando método IQR
+
+* Si representan comportamiento válido
+  - conservar para análisis
+
+* Si representan errores
+  - eliminar o corregir
+
+* Si distorsionan el análisis
+  - aplicar winsorization
+
+---
+
+#### Duplicados
+
+* Detectar registros repetidos
+* Eliminar duplicados exactos
+
+---
+
+#### Tipos de datos
+
+* Validar variables numéricas y categóricas
+* Corregir formatos inconsistentes
+
+### Resultado esperado
+
+* Dataset limpio y consistente
+* Variables preparadas para análisis
+* Reducción de sesgos analíticos
+
+---
+
+## 2. Exploratory Data Analysis (EDA)
 
 ### Objetivo
 
@@ -61,20 +131,19 @@ Explorar distribuciones, patrones y relaciones iniciales dentro del dataset.
 
 ---
 
-## 2. Correlation Analysis
+## 3. Correlation Analysis
 
 ### Objetivo
 
-Identificar relaciones estadísticas significativas entre variables y detectar posibles indicadores de riesgo.
+Identificar relaciones estadísticas significativas entre variables y detectar indicadores de riesgo.
 
 ### Responsabilidades
 
 * Matriz completa de correlación
 * Relaciones:
-
-  * Uso vs Salud Mental
-  * Uso vs Sueño
-  * Sueño vs Salud Mental
+  - Uso vs Salud Mental
+  - Uso vs Sueño
+  - Sueño vs Salud Mental
 * Scatter plots con tendencia
 * Análisis por subgrupos
 * Interpretación automática de correlaciones
@@ -82,18 +151,93 @@ Identificar relaciones estadísticas significativas entre variables y detectar p
 
 ### Reglas de interpretación
 
-* `|r| > 0.7` → Muy fuerte
-* `|r| > 0.5` → Fuerte
-* `|r| > 0.3` → Moderada
-* `|r| < 0.3` → Débil
+* |r| > 0.7 → Muy fuerte
+* |r| > 0.5 → Fuerte
+* |r| > 0.3 → Moderada
+* |r| < 0.3 → Débil
 
 ---
 
-## 3. Insight Generation
+## 4. Model Selection
 
 ### Objetivo
 
-Transformar resultados estadísticos en conclusiones interpretativas y recomendaciones accionables.
+Evaluar diferentes modelos analíticos para seleccionar el enfoque más adecuado en la detección de patrones de riesgo y comportamiento digital.
+
+### Modelos evaluados
+
+#### Regresión Lineal
+Objetivo:
+- predecir `Mental_Health_Score`
+
+Variables:
+- Avg_Daily_Usage_Hours
+- Sleep_Hours_Per_Night
+- Age
+
+---
+
+#### Árbol de Decisión
+Objetivo:
+- clasificar niveles de riesgo estudiantil
+
+Variables:
+- uso diario
+- sueño
+- salud mental
+
+---
+
+#### K-Means Clustering
+Objetivo:
+- segmentar estudiantes según patrones de comportamiento
+
+Variables:
+- uso diario
+- sueño
+- salud mental
+
+---
+
+### Métricas de evaluación
+
+#### Regresión Lineal
+* R² Score
+* Mean Squared Error (MSE)
+
+#### Árbol de Decisión
+* Accuracy
+* Precision
+* Recall
+
+#### K-Means
+* Silhouette Score
+
+---
+
+### Reglas de selección
+
+El agente debe:
+
+* comparar métricas entre modelos
+* seleccionar el modelo con mejor desempeño
+* priorizar interpretabilidad sobre complejidad
+* evitar sobreajuste (overfitting)
+
+### Resultado esperado
+
+* Modelo seleccionado automáticamente
+* Métricas comparativas
+* Interpretación del rendimiento
+* Relación entre modelo y comportamiento estudiantil
+
+---
+
+## 5. Insight Generation
+
+### Objetivo
+
+Transformar resultados estadísticos y métricas de modelos en conclusiones interpretativas y recomendaciones accionables.
 
 ### Responsabilidades
 
@@ -111,6 +255,7 @@ Transformar resultados estadísticos en conclusiones interpretativas y recomenda
 * Deterioro de salud mental
 * Impacto académico
 * Segmentos de mayor riesgo
+* Resultados obtenidos por modelos analíticos
 
 ---
 
@@ -118,9 +263,10 @@ Transformar resultados estadísticos en conclusiones interpretativas y recomenda
 
 El agente debe adaptar el flujo analítico según:
 
-* calidad de los datos
+* calidad del dataset
+* presencia de nulos u outliers
 * correlaciones detectadas
-* patrones encontrados
+* rendimiento de modelos
 * riesgos identificados
 
 ## Flujo principal
@@ -128,54 +274,14 @@ El agente debe adaptar el flujo analítico según:
 ```text
 Dataset CSV
    ↓
-Carga y validación de datos
+Data Wrangling Skill
    ↓
 EDA Skill
    ↓
 Correlation Analysis Skill
    ↓
+Model Selection Skill
+   ↓
 Insight Generation Skill
    ↓
 Conclusiones automáticas
-```
-
-## Comportamiento del Agente
-
-Si se detectan:
-
-* correlaciones críticas
-* indicadores de deterioro mental
-* privación de sueño
-* patrones de riesgo elevados
-
-El agente debe:
-
-* priorizar hallazgos relevantes
-* generar alertas interpretativas
-* destacar posibles implicaciones sobre bienestar estudiantil
-* producir recomendaciones basadas en evidencia
-
----
-
-# Reglas Generales
-
-El agente debe:
-
-* priorizar evidencia cuantitativa
-* evitar conclusiones sin soporte estadístico
-* diferenciar correlación de causalidad
-* generar interpretaciones claras y contextualizadas
-* mantener coherencia entre hallazgos y recomendaciones
-
----
-
-# Resultado Esperado
-
-El sistema debe generar:
-
-* visualizaciones analíticas
-* correlaciones relevantes
-* alertas automáticas
-* insights interpretativos
-* clasificación de riesgos
-* recomendaciones accionables
